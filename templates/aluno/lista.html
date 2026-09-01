@@ -1,0 +1,47 @@
+{% include 'cabecalho.html' %}
+
+<h1 class="mb-4">Lista alunos</h1>
+
+<div class="row">
+
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <!-- cabeçalhos -->
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in lista_alunos %}
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>
+                        <a href="/alunos/editar/3" class="btn btn-primary btn-sm">
+                            Editar
+                        </a>
+
+                        <a href="/alunos/remover/3"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Tem certeza que deseja remover este registro?');">
+                            Remover
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    
+
+    
+
+
+
+
+{% include 'rodape.html' %}
