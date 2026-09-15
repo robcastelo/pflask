@@ -1,4 +1,5 @@
-from flask import Flask, render_template    
+from flask import Flask, render_template
+import sqlite3    
 
 
 app = Flask(__name__)
@@ -12,19 +13,34 @@ def home():
 
 @app.route('/aluno')
 def listar_aluno():
-    lista_alunos = [
-        (1, "Ana", 20, "Teresina"),
-        (2, "Paulo", 20, "Altos"),
-        (3, "Claudio", 18, "Codó"),
-        (4, "Mateus", 19, "Teresina"),
-        (5, "Julia", 21, "Parnaíba")
-    ]
-    return render_template('aluno/lista.html', lista_alunos=lista_alunos)
+    DB_PATH = "banco_escola.db"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, nome, idade, cidade FROM aluno')
+    lista = cursor.fetchall()
+    conn.close()
+    return render_template('aluno/lista.html', lista=lista)
 
 
 @app.route('/professor')
-def lista_professor():    
+def lista_professor():
+    DB_PATH = "banco_escola.db"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, nome, disciplina FROM professor')
+    lista = cursor.fetchall()    
+    conn.close()    
     return render_template('professor/lista.html')
+
+@app.route('/turma')
+def lista_turma():    
+    DB_PATH = "banco_escola.db"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()    
+    cursor.execute('select turma.id, semestre, curso.nome_curso, professor.nome from turma join curso on curso.id=turma.curso_id join professor on professor.id=turma.professor_id')    
+    lista = cursor.fetchall()    
+    conn.close()
+    return render_template('turma/lista.html', lista=lista)
 
 
 @app.route('/contato')
