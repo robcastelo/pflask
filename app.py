@@ -30,7 +30,7 @@ def lista_professor():
     cursor.execute('SELECT id, nome, disciplina FROM professor')
     lista = cursor.fetchall()    
     conn.close()    
-    return render_template('professor/lista.html')
+    return render_template('professor/lista.html', lista=lista)
 
 @app.route('/turma')
 def lista_turma():    
