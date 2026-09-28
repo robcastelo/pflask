@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('dashboard/index.html')
 
 
 
@@ -45,13 +45,13 @@ def lista_turma():
 
 @app.route('/contato')
 def contato():
-    return render_template('contato.html')
+    return render_template('dashboard/contato.html')
 
 
 
 @app.route('/sobre')
 def sobre():
-    return render_template('sobre.html')
+    return render_template('dashboard/sobre.html')
 
 
 if __name__ == '__main__':
