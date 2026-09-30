@@ -1,6 +1,7 @@
 from dao.db_config import get_connection
 
 class CursoDAO:
+
     sqlSelect = 'SELECT id, nome_curso, duracao FROM curso'
 
     def listar(self):
@@ -9,3 +10,5 @@ class CursoDAO:
         cursor.execute(self.sqlSelect)
         lista = cursor.fetchall()
         return lista
+
+

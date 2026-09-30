@@ -35,7 +35,7 @@ def listar_turma():
     return render_template('turma/lista.html', lista=lista)
 
 @app.route('/curso')
-def listar_turma():
+def listar_curso():
     dao = CursoDAO()
     lista = dao.listar()
     return render_template('curso/lista.html', lista=lista)
