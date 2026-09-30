@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from dao.aluno_dao import AlunoDAO
 from dao.professor_dao import ProfessorDAO
 from dao.turma_dao import TurmaDAO
+from dao.curso_dao import CursoDAO
 
 app = Flask(__name__)
 
