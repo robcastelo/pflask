@@ -64,9 +64,7 @@ def login():
     dados = f"Usuário: {usuario}, Senha: {senha}, E-mail: {email}"
     return render_template('saudacao/saudacao.html', valor_recebido=dados)
 
-@app.route('/desafio1/<nome>')
-def desafio1(nome):
-    return render_template('desafio/desafio.html', valor_recebido=nome)
+
 
 @app.route('/desafio2/')
 def desafio2():
