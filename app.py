@@ -51,7 +51,7 @@ def saudacao1(nome):
     return render_template('saudacao/saudacao.html', valor_recebido=nome)
 
 
-@app.route('/saudacao2')
+@app.route('/saudacao2/')
 def saudacao2():
     nome = request.args.get('nome')
     return render_template('saudacao/saudacao.html', valor_recebido=nome)
