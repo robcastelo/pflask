@@ -66,8 +66,8 @@ def login():
 
 
 
-@app.route('/desafio2/')
-def desafio2():
+@app.route('/desafio/')
+def desafio():
     nome = request.args.get('nome')
     return render_template('desafio/desafio.html', valor_recebido=nome)
 
