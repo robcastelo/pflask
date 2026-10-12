@@ -47,5 +47,22 @@ def listar_curso():
 def contato():
     return render_template('dashboard/contato.html')
 
+@app.route('/saudacao1/<nome>')
+def saudacao1(nome):
+    return render_template('saudacao/saudacao.html', valor_recebido=nome)
+
+
+@app.route('/saudacao2')
+def saudacao2():
+    return render_template('saudacao/saudacao.html', valor_recebido=request.args.get('nome'))
+
+@app.route('/login', methods=['POST'])
+def login():
+    usuario = request.form['usuario']
+    senha = request.form['senha']
+    email = request.form['email']
+    dados = f"Usuário: {usuario}, Senha: {senha}, E-mail: {email}"
+    return render_template('saudacao/saudacao.html', valor_recebido=dados)
+
 if __name__ == '__main__':
     app.run(debug=True)
