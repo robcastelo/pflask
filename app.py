@@ -64,5 +64,24 @@ def login():
     dados = f"Usuário: {usuario}, Senha: {senha}, E-mail: {email}"
     return render_template('saudacao/saudacao.html', valor_recebido=dados)
 
+@app.route('/desafio2/')
+def desafio2():
+    nome = request.args.get('nome')
+    return render_template('desafio/desafio.html', valor_recebido=nome)
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    usuario = request.form['usuario']
+    nascimento = request.form['nascimento']
+    cpf = request.form['cpf']
+    nome_mae = request.form['nome_mae']
+    dados = f"Usuário: {usuario}, Nascimento: {nascimento}, CPF: {cpf}, Nome da Mãe: {nome_mae}"
+    return render_template('desafio/desafio.html', valor_recebido=dados)
+
+@app.route('/desafio1/<nome>')
+def desafio1(nome):
+    return render_template('desafio/desafio.html', valor_recebido=nome)
+
 if __name__ == '__main__':
     app.run(debug=True)
