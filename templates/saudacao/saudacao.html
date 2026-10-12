@@ -1,4 +1,4 @@
-{% include `dashboardcabecalho.html` %}
+{% include `dashboard/cabecalho.html` %}
 
 <h1 class="mb-4">{{valor-recebido}}</h1>
 
@@ -7,15 +7,14 @@
 <a href="/saudacao2?nome=Maria">Query String <a>
 
 <form action="/login" method="post">
-    <input type="text" name="Usuario" placeholder="login"> <br><br> 
-    <input type="password" name="senha" placeholder="senha"><br><br>
+    <input type="text" name="Usuario" placeholder="Login"> <br><br> 
+    <input type="password" name="senha" placeholder="Senha"><br><br>
     <input type="email" name="email" placeholder="E-mail"> <br><br>
     
-    <button type="submit">Enviar</button>
+    <button type="submit" value="Enviar">
 </form>
 
 
 
 
-
-{% include `dashboardcabecalho.html` %}
+{% include `dashboard/rodape.html` %}

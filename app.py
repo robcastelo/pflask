@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from dao.aluno_dao import AlunoDAO
 from dao.professor_dao import ProfessorDAO
 from dao.turma_dao import TurmaDAO
@@ -52,9 +52,10 @@ def saudacao1(nome):
     return render_template('saudacao/saudacao.html', valor_recebido=nome)
 
 
-@app.route('/saudacao2')
+@app.route('/saudacao2/')
 def saudacao2():
-    return render_template('saudacao/saudacao.html', valor_recebido=request.args.get('nome'))
+    nome = request.args.get('nome')
+    return render_template('saudacao/saudacao.html', valor_recebido=nome)
 
 @app.route('/login', methods=['POST'])
 def login():
