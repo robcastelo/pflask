@@ -69,7 +69,6 @@ def desafio2():
     nome = request.args.get('nome')
     return render_template('desafio/desafio.html', valor_recebido=nome)
 
-
 @app.route('/login', methods=['POST'])
 def login():
     usuario = request.form['usuario']
