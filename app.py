@@ -42,7 +42,6 @@ def listar_curso():
     return render_template('curso/lista.html', lista=lista)
 
 
-
 @app.route('/contato')
 def contato():
     return render_template('dashboard/contato.html')
