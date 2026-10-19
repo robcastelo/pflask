@@ -4,8 +4,6 @@ from dao.professor_dao import ProfessorDAO
 from dao.turma_dao import TurmaDAO
 from dao.curso_dao import CursoDAO
 
-from dao.aluno_dao import alunoDAO
-from dao.professor_dao import professorDAO
 
 app = Flask(__name__)
 app.secret_key = "uma_chave_muito_secreta_e_unica"
