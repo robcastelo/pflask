@@ -35,6 +35,7 @@ def salvar_aluno(id=None):
     cidade = request.form['cidade']
     dao = AlunoDAO()
     resultado = dao.salvar(id, nome, idade, cidade)
+    
     if resultado["status"] == "ok":
         flash("Aluno salvo com sucesso!", "success")
     else:
