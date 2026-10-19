@@ -34,11 +34,11 @@ def salvar_aluno(id=None):
     idade = request.form['idade']
     cidade = request.form['cidade']
     dao = AlunoDAO()
-    resultado = dao.salvar(None, nome, idade, cidade)
+    resultado = dao.salvar(id, nome, idade, cidade)
     if resultado["status"] == "ok":
         flash("Aluno salvo com sucesso!", "success")
     else:
-        flash(f"Erro ao salvar aluno: {resultado['mensagem']}", "danger")
+        flash(resultado["mensagem"], "danger")
     return redirect('/aluno')
 
 @app.route('/professor')
