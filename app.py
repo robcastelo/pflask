@@ -1,10 +1,14 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, flash
 from dao.aluno_dao import AlunoDAO
 from dao.professor_dao import ProfessorDAO
 from dao.turma_dao import TurmaDAO
 from dao.curso_dao import CursoDAO
 
+from dao.aluno_dao import alunoDAO
+from dao.professor_dao import professorDAO
+
 app = Flask(__name__)
+app.secret_key = "uma_chave_muito_secreta_e_unica
 
 @app.route('/')
 def home():
@@ -21,6 +25,23 @@ def listar_alunos():
     dao = AlunoDAO()
     lista = dao.listar()
     return render_template('aluno/lista.html', lista=lista)
+
+@app.route('/aluno/form')
+def form_aluno():
+    return render_template('aluno/form.html', aluno=None)
+
+@app.route('/aluno/salvar', methods=['POST'])
+def salvar_aluno(id=None):
+    nome = request.form['nome']
+    idade = request.form['idade']
+    cidade = request.form['cidade']
+    dao = AlunoDAO()
+    resultado = dao.salvar(None, nome, idade, cidade)
+    if resultado["status"] == "ok":
+        flash("Aluno salvo com sucesso!", "success")
+    else:
+        flash(f"Erro ao salvar aluno: {resultado['mensagem']}", "danger")
+    return redirect('/aluno')
 
 @app.route('/professor')
 def listar_professor():
@@ -79,6 +100,7 @@ def formulario():
     nome_da_mae = request.form['nome_da_mae']
     dados = f"Nome: {nome}, Data de Nascimento: {data_nascimento}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
     return render_template('desafio/desafio.html', valor_recebido=dados)
+
 
 
 if __name__ == '__main__':
