@@ -8,7 +8,7 @@ from dao.aluno_dao import alunoDAO
 from dao.professor_dao import professorDAO
 
 app = Flask(__name__)
-app.secret_key = "uma_chave_muito_secreta_e_unica
+app.secret_key = "uma_chave_muito_secreta_e_unica"
 
 @app.route('/')
 def home():
