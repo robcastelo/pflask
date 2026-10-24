@@ -48,6 +48,26 @@ def listar_professor():
     lista = dao.listar()
     return render_template('professor/lista.html', lista=lista)
 
+@app.route('/professor/form')
+def form_professor():
+    return render_template('professor/form.html', professor=None)
+
+
+@app.route('/professor/salvar/', methods=['POST'])
+def salvar_professor():
+    nome = request.form['nome']
+    disciplina = request.form['disciplina']
+
+    dao = ProfessorDAO()
+    result = dao.salvar(None, nome, disciplina)
+
+    if result["status"] == "ok":
+        flash("Professor salvo com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+
+    return redirect('/professor')
+
 
 @app.route('/turma')
 def listar_turma():
@@ -61,6 +81,24 @@ def listar_curso():
     lista = dao.listar()
     return render_template('curso/lista.html', lista=lista)
 
+@app.route('/curso/form')
+def form_curso():
+    return render_template('curso/form.html', curso=None)
+
+@app.route('/curso/salvar/', methods=['POST'])
+def salvar_curso():
+    nome = request.form['nome']
+    duracao = request.form['duracao']
+
+    dao = CursoDAO()
+    result = dao.salvar(None, nome, duracao)
+
+    if result["status"] == "ok":
+        flash("Curso salvo com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+
+    return redirect('/curso')
 
 @app.route('/contato')
 def contato():
