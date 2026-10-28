@@ -30,3 +30,28 @@ class CursoDAO:
         finally:
             cursor.close()
             conn.close()
+
+    def buscar_por_id(self, id):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, nome_curso, duracao FROM curso WHERE id = %s', (id,))
+        curso = cursor.fetchone()
+        conn.close()
+        return curso
+
+    def remover(self, id):
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute('DELETE FROM curso WHERE id = %s', (id,))
+            conn.commit()
+            return {"status": "ok"}
+
+        except Exception as e:
+            conn.rollback()
+            return {"status": "erro", "mensagem": f"Erro: {str(e)}"}
+
+        finally:
+            cursor.close()
+            conn.close()

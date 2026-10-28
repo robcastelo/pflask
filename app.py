@@ -8,6 +8,7 @@ from dao.curso_dao import CursoDAO
 app = Flask(__name__)
 app.secret_key = "uma_chave_muito_secreta_e_unica"
 
+
 @app.route('/')
 def home():
     return render_template('dashboard/index.html')
@@ -29,18 +30,37 @@ def form_aluno():
     return render_template('aluno/form.html', aluno=None)
 
 @app.route('/aluno/salvar', methods=['POST'])
+@app.route('/aluno/salvar/<int:id>', methods=['POST']) 
 def salvar_aluno(id=None):
     nome = request.form['nome']
     idade = request.form['idade']
     cidade = request.form['cidade']
     dao = AlunoDAO()
-    resultado = dao.salvar(id, nome, idade, cidade)
-    
-    if resultado["status"] == "ok":
+    result = dao.salvar(id, nome, idade, cidade)
+
+    if result["status"] == "ok":
         flash("Aluno salvo com sucesso!", "success")
+    else:
+        flash(result["mensagem"], "danger")
+
+    return redirect('/aluno')
+
+@app.route('/aluno/editar/<int:id>')
+def editar_aluno(id):
+    dao = AlunoDAO()
+    aluno = dao.buscar_por_id(id)
+    return render_template('aluno/form.html', aluno=aluno)
+
+@app.route('/aluno/remover/<int:id>')
+def remover_aluno(id):
+    dao = AlunoDAO()
+    resultado = dao.remover(id)
+    if resultado["status"] == "ok":
+        flash("Aluno removido com sucesso!", "success")
     else:
         flash(resultado["mensagem"], "danger")
     return redirect('/aluno')
+
 
 @app.route('/professor')
 def listar_professor():
@@ -51,7 +71,6 @@ def listar_professor():
 @app.route('/professor/form')
 def form_professor():
     return render_template('professor/form.html', professor=None)
-
 
 @app.route('/professor/salvar/', methods=['POST'])
 def salvar_professor():
