@@ -87,6 +87,21 @@ def salvar_professor():
 
     return redirect('/professor')
 
+@app.route('/professor/editar/<int:id>')
+def editar_professor(id):
+    dao = ProfessorDAO()
+    professor = dao.buscar_por_id(id)
+    return render_template('professor/form.html', professor=professor)
+
+@app.route('/professor/remover/<int:id>')
+def remover_professor(id):
+    dao = ProfessorDAO()
+    resultado = dao.remover(id)
+    if resultado["status"] == "ok":
+        flash("Professor removido com sucesso!", "success")
+    else:
+        flash(resultado["mensagem"], "danger")
+    return redirect('/professor')
 
 @app.route('/turma')
 def listar_turma():
@@ -117,6 +132,22 @@ def salvar_curso():
     else:
         flash(result["mensagem"], "danger")
 
+    return redirect('/curso')
+
+@app.route('/curso/editar/<int:id>')
+def editar_curso(id):
+    dao = CursoDAO()
+    curso = dao.buscar_por_id(id)
+    return render_template('curso/form.html', curso=curso)
+
+@app.route('/curso/remover/<int:id>')
+def remover_curso(id):
+    dao = CursoDAO()
+    resultado = dao.remover(id)
+    if resultado["status"] == "ok":
+        flash("Curso removido com sucesso!", "success")
+    else:
+        flash(resultado["mensagem"], "danger")
     return redirect('/curso')
 
 @app.route('/contato')
