@@ -2,7 +2,7 @@ from dao.db_config import get_connection
 
 class AlunoDAO:
 
-    sqlSelect = 'SELECT id,nome,idade,cidade FROM aluno'
+    sqlSelect = 'SELECT id,nome,idade,cidade FROM aluno ORDER BY id ASC'
 
     def listar(self):
         conn = get_connection()
