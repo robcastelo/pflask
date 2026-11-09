@@ -43,7 +43,7 @@ class TurmaDAO:
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT id, semestre, curso_id, professor_id FROM turma WHERE id = %s', (id,))
-        registro = cursor.fetchone()
+        turma = cursor.fetchone()
         conn.close()
         return turma
 
