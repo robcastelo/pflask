@@ -45,7 +45,7 @@ class TurmaDAO:
         cursor.execute('SELECT id, semestre, curso_id, professor_id FROM turma WHERE id = %s', (id,))
         registro = cursor.fetchone()
         conn.close()
-        return registro
+        return turma
 
     def remover(self, id):
         conn = get_connection()
