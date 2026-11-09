@@ -7,10 +7,18 @@ class TurmaDAO:
     def listar(self):
         conn = get_connection()
         cursor = conn.cursor()
-        cursor.execute('SELECT id, nome_curso FROM curso')
+        cursor.execute(self.sqlSelect)
         lista = cursor.fetchall()
         conn.close()
         return lista
+    
+    def listar(self):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT id, nome_curso FROM curso')
+        lista = cursor.fetchall()
+        conn.close()
+        return cursos
 
     def salvar(self, id, semestre, curso_id, professor_id):
         conn = get_connection()
@@ -53,4 +61,3 @@ class TurmaDAO:
             return {"status": "erro", "mensagem": f"Erro: {str(e)}"}
         finally:
             conn.close()
-            
