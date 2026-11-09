@@ -129,6 +129,7 @@ def salvar_turma(id=None):
         flash(result["mensagem"], "danger")
     return redirect('/turma')
 
+@app.route('/turma/editar/<int:id>')
 def editar_turma(id):
     dao = TurmaDAO()
     turma = dao.buscar_por_id(id)
@@ -136,14 +137,16 @@ def editar_turma(id):
     professores = ProfessorDAO().listar()
     return render_template('turma/form.html', turma=turma, cursos=cursos, professores=professores)
 
+@app.route('/turma/remover/<int:id>')
 def remover_turma(id):
     dao = TurmaDAO()
     resultado = dao.remover(id)
     if resultado["status"] == "ok":
-        flash("Cadastro removido com sucesso!", "success")
+        flash("Turma removida com sucesso!", "success")
     else:
         flash(resultado["mensagem"], "danger")
     return redirect('/turma')
+
 
 @app.route('/curso')
 def listar_curso():
