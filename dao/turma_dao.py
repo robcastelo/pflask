@@ -11,12 +11,12 @@ class TurmaDAO:
         lista = cursor.fetchall()
         conn.close()
         return lista
-    
-    def listar(self):
+
+    def listar_cursos(self):
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT id, nome_curso FROM curso')
-        lista = cursor.fetchall()
+        cursos = cursor.fetchall()
         conn.close()
         return cursos
 
