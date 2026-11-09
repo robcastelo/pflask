@@ -117,6 +117,7 @@ def form_turma():
     return render_template('turma/form.html', turma=None, cursos=cursos, professores=professores)
 
 @app.route('/turma/salvar/', methods=['POST'])
+@app.route('/turma/salvar/<int:id>', methods=['POST'])
 def salvar_turma(id=None):
     semestre = request.form['semestre']
     curso_id = request.form['curso_id']
