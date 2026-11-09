@@ -20,7 +20,7 @@ class TurmaDAO:
         conn.close()
         return cursos
 
-        def salvar(self, id, semestre, curso_id, professor_id):
+    def salvar(self, id, semestre, curso_id, professor_id):
         conn = get_connection()
         cursor = conn.cursor()
         try:
