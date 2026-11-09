@@ -135,7 +135,7 @@ def editar_turma(id):
     turma = dao.buscar_por_id(id)
     cursos = dao.listar_cursos()
     professores = ProfessorDAO().listar()
-    return render_template('turma/form.html', turma=turma, cursos=cursos, professores=professores)
+    return render_template('turma/form.html', turma=turma, curso=curso, professor=professor)
 
 @app.route('/turma/remover/<int:id>')
 def remover_turma(id):
