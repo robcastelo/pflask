@@ -112,7 +112,7 @@ def listar_turma():
 @app.route('/turma/form')
 def form_turma():
     dao = TurmaDAO()
-    cursos = dao.listar_cursos()
+    cursos = CursoDAO().listar()
     professores = ProfessorDAO().listar()
     return render_template('turma/form.html', turma=None, cursos=cursos, professores=professores)
 
