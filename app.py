@@ -114,15 +114,17 @@ def form_turma():
     dao = TurmaDAO()
     cursos = dao.listar_cursos()
     professores = ProfessorDAO().listar()
-    return render_template('turma/form.html', cursos=cursos, professores=professores)
+    return render_template('turma/form.html', turma=None, cursos=cursos, professores=professores)
 
 @app.route('/turma/salvar/', methods=['POST'])
 def salvar_turma(id=None):
     semestre = request.form['semestre']
     curso_id = request.form['curso_id']
     professor_id = request.form['professor_id']
+
     dao = TurmaDAO()
     result = dao.salvar(id, semestre, curso_id, professor_id)
+
     if result["status"] == "ok":
         flash("Cadastro salvo com sucesso!", "success")
     else:
@@ -133,7 +135,7 @@ def salvar_turma(id=None):
 def editar_turma(id):
     dao = TurmaDAO()
     turma = dao.buscar_por_id(id)
-    cursos = dao.listar_cursos()
+    cursos = CursoDAO().listar()
     professores = ProfessorDAO().listar()
     return render_template('turma/form.html', turma=turma, cursos=cursos, professores=professores)
 
