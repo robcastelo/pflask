@@ -267,10 +267,7 @@ def login():
     dados = f"Usuário: {usuario}, Senha: {senha}, E-mail: {email}"
     return render_template('saudacao/saudacao.html', valor_recebido=dados)
 
-@app.route('/desafio/')
-def desafio():
-    nome = request.args.get('nome')
-    return render_template('desafio/desafio.html', valor_recebido=nome)
+
 
 @app.route('/formulario', methods=['GET', 'POST'])
 def formulario():
