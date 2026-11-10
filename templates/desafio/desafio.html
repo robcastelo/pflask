@@ -1,14 +1,16 @@
 {% include 'dashboard/cabecalho.html' %}
 
-<h1 class="mb-4">Dados do Cadastro</h1>
+<h1 class="mb-4">Dados de Cadastro</h1>
 <h1 class="mb-4">{{valor_recebido}}</h1>
 
-<form action="/desafio" method="POST">
-    <input type="text" name="nome" placeholder="Nome" > <br><br>
-    <input type="date" name="data de nascimento" placeholder="Data de Nascimento" > <br><br>
-    <input type="text" name="cpf" placeholder="CPF" > <br><br>
-    <input type="text" name="nome da mãe" placeholder="Nome da Mãe" > <br><br>
-    <button type="submit">Enviar</button>
-</form>
+<form action="/formulario" method="POST">
+        <input type="text" name="nome" placeholder="Nome" > <br><br>
+        <input type="date" name="data_nascimento" placeholder="Data de Nascimento"> <br><br>
+        <input type="text" name="cpf" placeholder="CPF"> <br><br>
+        <input type="text" name="nome_da_mae" placeholder="Nome da Mãe"> <br><br>
+        <input type="text" name="nome_do_pai" placeholder="Nome do Pai"> <br><br>
+        <input type="submit" value="Enviar">
+    </form>
+
 
 {% include 'dashboard/rodape.html' %}
