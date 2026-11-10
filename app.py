@@ -193,10 +193,6 @@ def remover_curso(id):
         flash(resultado["mensagem"], "danger")
     return redirect('/curso')
 
-@app.route('/contato')
-def contato():
-    return render_template('dashboard/contato.html')
-
 
 @app.route('/matricula')
 def lista_matricula():
@@ -251,6 +247,9 @@ def remover_matricula(id):
         flash(resultado["mensagem"], "danger")
     return redirect('/matricula')
 
+@app.route('/contato')
+def contato():
+    return render_template('dashboard/contato.html')
 
 
 @app.route('/saudacao1/<nome>')
