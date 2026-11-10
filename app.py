@@ -267,16 +267,11 @@ def login():
     dados = f"Usuário: {usuario}, Senha: {senha}, E-mail: {email}"
     return render_template('saudacao/saudacao.html', valor_recebido=dados)
 
-@app.route('/desafio', methods=['GET', 'POST'])
+
+@app.route('/desafio/')
 def desafio():
-    if request.method == 'GET':
-        return render_template('desafio/desafio.html')
-    nome = request.form['nome']
-    data = request.form['data de nascimento']
-    cpf = request.form['cpf']
-    nome_da_mae = request.form['nome da mãe']
-    dados = f"Nome: {nome}, Data de Nascimento: {data}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
-    return render_template('desafio/desafio.html', valor_recebido=dados)
+    nome = request.args.get('nome')
+    return render_template('desafio/desafio.html', valor_recebido=nome)
 
 @app.route('/formulario', methods=['POST'])
 def formulario():
