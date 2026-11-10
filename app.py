@@ -278,14 +278,7 @@ def desafio():
     dados = f"Nome: {nome}, Data de Nascimento: {data}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
     return render_template('desafio/desafio.html', valor_recebido=dados)
 
-@app.route('/formulario', methods=['POST'])
-def formulario():
-    nome = request.form['nome']
-    data_nascimento = request.form['data_nascimento']
-    cpf = request.form['cpf']
-    nome_da_mae = request.form['nome_da_mae']
-    dados = f"Nome: {nome}, Data de Nascimento: {data_nascimento}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
-    return render_template('desafio/desafio.html', valor_recebido=dados)
+
 
 
 
