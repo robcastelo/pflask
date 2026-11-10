@@ -272,16 +272,16 @@ def desafio():
     nome = request.args.get('nome')
     return render_template('desafio/desafio.html', valor_recebido=nome)
 
-@app.route('/formulario', methods=['POST'])
+@app.route('/formulario', methods=['GET', 'POST'])
 def formulario():
+    if request.method == 'GET':
+        return render_template('desafio/desafio.html')
     nome = request.form['nome']
-    data_nascimento = request.form['data_nascimento']
+    data = request.form['data de nascimento']
     cpf = request.form['cpf']
-    nome_da_mae = request.form['nome_da_mae']
-    dados = f"Nome: {nome}, Data de Nascimento: {data_nascimento}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
+    nome_da_mae = request.form['nome da mãe']
+    dados = f"Nome: {nome}, Data de Nascimento: {data}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
     return render_template('desafio/desafio.html', valor_recebido=dados)
-
-
 
 
 
