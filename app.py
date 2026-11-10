@@ -268,18 +268,16 @@ def login():
     return render_template('saudacao/saudacao.html', valor_recebido=dados)
 
 
-
-@app.route('/formulario', methods=['GET', 'POST'])
-def formulario():
-    if request.method == 'GET':
-        return render_template('desafio/desafio.html')
-    nome = request.form['nome']
-    data = request.form['data de nascimento']
-    cpf = request.form['cpf']
-    nome_da_mae = request.form['nome da mãe']
-    dados = f"Nome: {nome}, Data de Nascimento: {data}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
-    return render_template('desafio/desafio.html', valor_recebido=dados)
-
+@app.route('/desafio', methods=['GET', 'POST'])
+def desafio():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        data_nascimento = request.form['data de nascimento']
+        cpf = request.form['cpf']
+        nome_da_mae = request.form['nome da mãe']
+        dados = f"Nome: {nome}, Data de Nascimento: {data_nascimento}, CPF: {cpf}, Nome da Mãe: {nome_da_mae}"
+        return render_template('desafio/desafio.html', valor_recebido=dados)
+    return render_template('desafio/desafio.html', valor_recebido="Preencha o formulário")
 
 
 
