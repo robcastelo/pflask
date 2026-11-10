@@ -267,7 +267,7 @@ def login():
     dados = f"Usuário: {usuario}, Senha: {senha}, E-mail: {email}"
     return render_template('saudacao/saudacao.html', valor_recebido=dados)
 
-
+@app.route('/desafio/')
 @app.route('/desafio', methods=['GET', 'POST'])
 def desafio():
     if request.method == 'POST':
