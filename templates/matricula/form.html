@@ -1,0 +1,47 @@
+{% include '/cabecalho.html' %}
+
+<h1 class="mb-4">Cadastrar Matrícula</h1>
+
+<div class="row">
+<div class="col-12">
+    <form action="/matricula/salvar/{{ matricula[0] }}" method="POST">
+
+    <!-- Aluno -->
+    <div class="mb-3">
+        <label for="aluno_id" class="form-label">Aluno</label>
+        <select name="aluno_id" id="aluno_id" class="form-select" required>
+        {% for aluno in lista_alunos %}
+            <option value="{{ aluno[0] }}" {% if matricula and aluno[0] == matricula[1] %}selected{% endif %}>{{ aluno[1] }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <!-- Curso -->
+    <div class="mb-3">
+        <label for="curso_id" class="form-label">Curso</label>
+        <select name="curso_id" id="curso_id" class="form-select" required>
+        {% for curso in lista_cursos %}
+            <option value="{{ curso[0] }}" {% if matricula and curso[0] == matricula[2] %}selected{% endif %}>{{ curso[1] }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <!-- Turma -->
+    <div class="mb-3">
+        <label for="turma_id" class="form-label">Turma</label>
+        <select name="turma_id" id="turma_id" class="form-select" required>
+        {% for turma in lista_turmas %}
+            <option value="{{ turma[0] }}" {% if matricula and turma[0] == matricula[3] %}selected{% endif %}>{{ turma[1] }} - {{ turma[2] }} - {{ turma[3] }} ({{ turma[4] }})</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="/matricula" class="btn btn-secondary">Cancelar</a>
+    </div>
+    </form>
+</div>
+</div>
+{% include '/rodape.html' %}
