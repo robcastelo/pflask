@@ -197,8 +197,7 @@ def remover_curso(id):
 def listar_matriculas():
     dao = MatriculaDAO()
     lista = dao.listar()
-    return render_template('matricula/lista_matricula.html', lista=lista)
-
+    return render_template('matricula/lista.html', lista=lista)
 
 @app.route('/matricula/form')
 def form_matricula():
