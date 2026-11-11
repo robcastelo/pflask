@@ -4,16 +4,16 @@
 
 <div class="row">
     <div class="col-12">
-        <form action="/turma/salvar/" method="POST">
+        <form action="{{ url_for('salvar_turma', id=turma[0]) if turma else url_for('salvar_turma') }}" method="POST">
             <div class="mb-3">
                 <label for="semestre" class="form-label">Semestre</label>
-                <input type="text" class="form-control" id="semestre" name="semestre" required>
+                <input type="text" class="form-control" id="semestre" name="semestre" value="{{ turma[1] if turma else '' }}" required>
             </div>
 
             <div class="mb-3">
                 <label for="curso_id" class="form-label">Curso</label>
                 <select class="form-select" id="curso_id" name="curso_id" required>
-                    <option value="">Selecione um curso</option>
+                    <option value="">Selecione o curso</option>
                     {% for curso in cursos %}
                     <option value="{{ curso[0] }}">{{ curso[1] }}</option>
                     {% endfor %}
@@ -23,7 +23,7 @@
             <div class="mb-3">
                 <label for="professor_id" class="form-label">Professor</label>
                 <select class="form-select" id="professor_id" name="professor_id" required>
-                    <option value="">Selecione um professor</option>
+                    <option value="">Selecione o professor</option>
                     {% for professor in professores %}
                     <option value="{{ professor[0] }}">{{ professor[1] }}</option>
                     {% endfor %}
